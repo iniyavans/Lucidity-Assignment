@@ -1,0 +1,272 @@
+[
+  {
+    "httpRequest": {
+      "method": "POST",
+      "path": "/api/v1/offer",
+      "body": {
+        "type": "JSON",
+        "json": {
+          "restaurant_id": 1,
+          "offer_type": "FLATX",
+          "offer_value": 10,
+          "customer_segment": [
+            "p1"
+          ]
+        }
+      }
+    },
+    "httpResponse": {
+      "body": "{\"response_msg\":\"success\"}",
+      "statusCode": 200
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "POST",
+      "path": "/api/v1/offer",
+      "body": {
+        "type": "JSON",
+        "json": {
+          "restaurant_id": 2,
+          "offer_type": "FLATPERCENT",
+          "offer_value": 15,
+          "customer_segment": [
+            "p2"
+          ]
+        }
+      }
+    },
+    "httpResponse": {
+      "body": "{\"response_msg\":\"success\"}",
+      "statusCode": 200
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "POST",
+      "path": "/api/v1/offer",
+      "body": {
+        "type": "JSON",
+        "json": {
+          "restaurant_id": 1,
+          "offer_type": "INVALID",
+          "offer_value": 10,
+          "customer_segment": [
+            "p1"
+          ]
+        }
+      }
+    },
+    "httpResponse": {
+      "body": "{\"response_msg\":\"Invalid offer type\"}",
+      "statusCode": 400
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "POST",
+      "path": "/api/v1/offer",
+      "body": {
+        "type": "JSON",
+        "json": {
+          "restaurant_id": 1,
+          "offer_type": "FLATX",
+          "offer_value": -10,
+          "customer_segment": [
+            "p1"
+          ]
+        }
+      }
+    },
+    "httpResponse": {
+      "body": "{\"response_msg\":\"offer_value must be positive\"}",
+      "statusCode": 400
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "POST",
+      "path": "/api/v1/offer",
+      "body": {
+        "type": "JSON",
+        "json": {
+          "restaurant_id": 1,
+          "offer_type": "FLATX",
+          "offer_value": 110,
+          "customer_segment": [
+            "p1"
+          ]
+        }
+      }
+    },
+    "httpResponse": {
+      "body": "{\"response_msg\":\"Invalid percentage value\"}",
+      "statusCode": 400
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "GET",
+      "path": "/api/v1/user_segment",
+      "queryStringParameters": {
+        "user_id": [
+          "1"
+        ]
+      }
+    },
+    "httpResponse": {
+      "body": "{\"segment\": \"p1\"}",
+      "statusCode": 200
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "GET",
+      "path": "/api/v1/user_segment",
+      "queryStringParameters": {
+        "user_id": [
+          "999"
+        ]
+      }
+    },
+    "httpResponse": {
+      "body": "{\"segment\": \"User not found\"}",
+      "statusCode": 400
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "GET",
+      "path": "/api/v1/user_segment",
+      "queryStringParameters": {
+        "user_id": [
+          ""
+        ]
+      }
+    },
+    "httpResponse": {
+      "body": "{\"segment\": \"User ID is invalid\"}",
+      "statusCode": 400
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "GET",
+      "path": "/api/v1/user_segment",
+      "queryStringParameters": {
+        "user_id": [
+          "abc"
+        ]
+      }
+    },
+    "httpResponse": {
+      "body": "{\"segment\": \"User ID is invalid\"}",
+      "statusCode": 400
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "POST",
+      "path": "/api/v1/cart/apply_offer",
+      "body": {
+        "type": "JSON",
+        "json": {
+          "cart_value": 200,
+          "user_id": 1,
+          "restaurant_id": 1
+        }
+      }
+    },
+    "httpResponse": {
+      "body": "{\"cart_value\": \"190\"}",
+      "statusCode": 200
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "POST",
+      "path": "/api/v1/cart/apply_offer",
+      "body": {
+        "type": "JSON",
+        "json": {
+          "cart_value": 200,
+          "user_id": 1,
+          "restaurant_id": 2
+        }
+      }
+    },
+    "httpResponse": {
+      "body": "{\"cart_value\": \"200\"}",
+      "statusCode": 400
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "POST",
+      "path": "/api/v1/cart/apply_offer",
+      "body": {
+        "type": "JSON",
+        "json": {
+          "cart_value": 200,
+          "user_id": 2,
+          "restaurant_id": 1
+        }
+      }
+    },
+    "httpResponse": {
+      "body": "{\"cart_value\": \"200\"}",
+      "statusCode": 400
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "POST",
+      "path": "/api/v1/cart/apply_offer",
+      "body": {
+        "type": "JSON",
+        "json": {
+          "user_id": 1,
+          "restaurant_id": 1
+        }
+      }
+    },
+    "httpResponse": {
+      "body": "{\"cart_value\": \"The card value is required.\"}",
+      "statusCode": 400
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "POST",
+      "path": "/api/v1/cart/apply_offer",
+      "body": {
+        "type": "JSON",
+        "json": {
+          "cart_value": 200,
+          "restaurant_id": 1
+        }
+      }
+    },
+    "httpResponse": {
+      "body": "{\"cart_value\": \"The user id is required.\"}",
+      "statusCode": 400
+    }
+  },
+  {
+    "httpRequest": {
+      "method": "POST",
+      "path": "/api/v1/cart/apply_offer",
+      "body": {
+        "type": "JSON",
+        "json": {
+          "cart_value": 200,
+          "user_id": 1
+        }
+      }
+    },
+    "httpResponse": {
+      "body": "{\"cart_value\": \"The restaurant id is required.\"}",
+      "statusCode": 400
+    }
+  }
+]
