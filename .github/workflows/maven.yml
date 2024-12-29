@@ -25,14 +25,10 @@ jobs:
         distribution: 'temurin'  # Use the Eclipse Temurin distribution of JDK
         cache: maven             # Enable caching of Maven dependencies
 
-    # Step 3: Build the project with Maven
-    - name: Build with Maven
-      run: mvn --batch-mode --update-snapshots package
-
-    # Step 4: Run tests for the specified class using Maven
+    # Step 3: Run tests for the specified class using Maven
     - name: Build and test with Maven
       run: mvn test -Dtest=com.springboot.CartOfferApplicationTests
 
-    # Step 5: Clean up after the build and tests
+    # Step 4: Clean up after the build and tests
     - name: Clean up after run
       run: mvn clean
