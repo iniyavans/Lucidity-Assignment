@@ -55,7 +55,7 @@ public class BaseAPI {
                 .then()
                 .assertThat()
                 .statusCode(statusCode)
-                .body("cart_value", equalTo(responseData)); // Correct JSON path
+                .body("cart_value", equalTo(responseData));
     }
 
     /**
@@ -77,6 +77,6 @@ public class BaseAPI {
                 .then()
                 .assertThat()
                 .statusCode(statusCode)
-                .body("segment", equalTo(responseMsg)); // Correct JSON path
+                .body("segment", equalTo(responseMsg));
     }
 }
