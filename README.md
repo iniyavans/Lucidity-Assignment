@@ -28,7 +28,7 @@ cd Lucidity-Assignment
 
 ```bash  
 cd mockserver
-sudo docker-compose up
+sudo docker compose up
 ```
 This will start a mock server service that simulates the /api/v1/user_segment API.
 
